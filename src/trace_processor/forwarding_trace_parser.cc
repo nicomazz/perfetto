@@ -19,6 +19,7 @@
 #include "perfetto/base/logging.h"
 #include "perfetto/ext/base/string_utils.h"
 #include "src/trace_processor/importers/ninja/ninja_log_parser.h"
+#include "src/trace_processor/importers/dtrace/dtrace_parser.h"
 #include "src/trace_processor/importers/proto/proto_trace_parser.h"
 #include "src/trace_processor/importers/proto/proto_trace_tokenizer.h"
 #include "src/trace_processor/process_tracker.h"
@@ -92,6 +93,11 @@ util::Status ForwardingTraceParser::Parse(std::unique_ptr<uint8_t[]> data,
       case kNinjaLogTraceType: {
         PERFETTO_DLOG("Ninja log detected");
         reader_.reset(new NinjaLogParser(context_));
+        break;
+      }
+      case kDTraceType: {
+        PERFETTO_DLOG("DTrace trace detected");
+        reader_.reset(new DTraceParser(context_));
         break;
       }
       case kFuchsiaTraceType: {
@@ -182,6 +188,9 @@ TraceType GuessTraceType(const uint8_t* data, size_t size) {
   // gzip'ed trace containing one of the other formats.
   if (base::StartsWith(start, "\x1f\x8b"))
     return kGzipTraceType;
+
+  if (base::StartsWith(start, "# DTrace"))
+    return kDTraceType;
 
   return kProtoTraceType;
 }

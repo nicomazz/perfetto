@@ -102,6 +102,8 @@ source_set("storage_minimal") {
     "importers/fuchsia/fuchsia_trace_utils.h",
     "importers/ninja/ninja_log_parser.cc",
     "importers/ninja/ninja_log_parser.h",
+    "importers/dtrace/dtrace_parser.cc",
+    "importers/dtrace/dtrace_parser.h",
     "importers/proto/args_table_utils.cc",
     "importers/proto/args_table_utils.h",
     "importers/proto/packet_sequence_state.cc",

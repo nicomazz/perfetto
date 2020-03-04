@@ -966,6 +966,8 @@ filegroup(
         "src/trace_processor/importers/fuchsia/fuchsia_trace_utils.h",
         "src/trace_processor/importers/ninja/ninja_log_parser.cc",
         "src/trace_processor/importers/ninja/ninja_log_parser.h",
+        "src/trace_processor/importers/dtrace/dtrace_parser.cc",
+        "src/trace_processor/importers/dtrace/dtrace_parser.h",
         "src/trace_processor/importers/proto/args_table_utils.cc",
         "src/trace_processor/importers/proto/args_table_utils.h",
         "src/trace_processor/importers/proto/packet_sequence_state.cc",
